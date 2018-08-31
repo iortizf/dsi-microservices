@@ -1,6 +1,6 @@
 node {
 
-imageName = "jovaniac/servicio-cliente:0.0.1-ci-cd"
+/*imageName = "jovaniac/servicio-cliente:0.0.1-ci-cd"
 
 stage('Descargando Codigo') {
 
@@ -50,14 +50,14 @@ sh "docker push ${imageName}"
 
 }
 
-}
+}*/
 
 stage('Deploy Kubernetes'){
 
 sh("kubectl apply -f kubernetes/")
 
 }
-
+ /*
 env.DOCKER_API_VERSION="1.23"
 
 sh "git rev-parse --short HEAD > commit-id"
@@ -73,5 +73,6 @@ registryHost = "http://10.51.33.59:5000/"
 //imageName = "jovaniac/servicio-cliente:0.0.1-ci-cd"
 
 env.BUILDIMG=imageName
+*/
 
 }
