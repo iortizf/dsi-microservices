@@ -1,0 +1,15 @@
+server.port: 8083
+spring:
+  application:
+    name: loan-dsi-ms
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://loan-dsi-db-svc/loan_dsi
+    username: admin
+    password: admin
+    driverClassName: org.postgresql.Driver

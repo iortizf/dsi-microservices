@@ -1,0 +1,440 @@
+{
+	"info": {
+		"_postman_id": "02c37a44-8a17-44e0-b381-c6051b34daa1",
+		"name": "KONG GATEWAY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"description": "Services administrator",
+			"item": [
+				{
+					"name": "Services",
+					"description": "Appis para manipular servicios",
+					"item": [
+						{
+							"name": "Kong add service",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "customer-service",
+											"type": "text"
+										},
+										{
+											"key": "url",
+											"value": "http://10.51.33.59:30095",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://10.51.144.46:8001/services/",
+									"protocol": "http",
+									"host": [
+										"10",
+										"51",
+										"144",
+										"46"
+									],
+									"port": "8001",
+									"path": [
+										"services",
+										""
+									]
+								},
+								"description": "Agregar un servicio a kong"
+							},
+							"response": []
+						},
+						{
+							"name": "Kong get services",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://104.154.174.147:8444/services",
+									"protocol": "https",
+									"host": [
+										"104",
+										"154",
+										"174",
+										"147"
+									],
+									"port": "8444",
+									"path": [
+										"services"
+									]
+								},
+								"description": "Obtiene todos los servicios registrados en kong"
+							},
+							"response": []
+						},
+						{
+							"name": "Kong delete services",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://10.51.144.46:8001/services/customer-service",
+									"protocol": "http",
+									"host": [
+										"10",
+										"51",
+										"144",
+										"46"
+									],
+									"port": "8001",
+									"path": [
+										"services",
+										"customer-service"
+									]
+								},
+								"description": "Obtiene todos los servicios registrados en kong"
+							},
+							"response": []
+						},
+						{
+							"name": "Kong update service",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "url",
+											"value": "http://104.198.139.212:80/",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://104.154.174.147:8444//services/customer-dsi-service",
+									"protocol": "https",
+									"host": [
+										"104",
+										"154",
+										"174",
+										"147"
+									],
+									"port": "8444",
+									"path": [
+										"",
+										"services",
+										"customer-dsi-service"
+									]
+								},
+								"description": "Actualiza los atributos de un servicio en especifico"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Proxy",
+					"description": "Api para trabajar con el proxy de kong",
+					"item": [
+						{
+							"name": "Kong proxy",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Host",
+										"value": "msconsulta-cliente"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nombre\":\"Kong proxy\",\n\t\"apellidoPaterno\":\"kong\",\n\t\"apellidoMaterno\":\"kong\",\n\t\"email\":\"kong@kong.com\",\n\t\"direccion\":\"kong mx\",\n\t\"genero\":\"M\",\n\t\"edad\":\"4\"\n}"
+								},
+								"url": {
+									"raw": "http://10.51.144.46:8000/-930553853",
+									"protocol": "http",
+									"host": [
+										"10",
+										"51",
+										"144",
+										"46"
+									],
+									"port": "8000",
+									"path": [
+										"-930553853"
+									]
+								},
+								"description": "A request to kong gateway layer"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Routes",
+					"description": "Appis para trabajar con rutas de Kong",
+					"item": [
+						{
+							"name": "Kong add routes",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "hosts[]",
+											"value": "microservicio-cliente",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://10.51.144.46:8001/services/customer-service/routes",
+									"protocol": "http",
+									"host": [
+										"10",
+										"51",
+										"144",
+										"46"
+									],
+									"port": "8001",
+									"path": [
+										"services",
+										"customer-service",
+										"routes"
+									]
+								},
+								"description": "Agregar una ruta al servicio"
+							},
+							"response": []
+						},
+						{
+							"name": "Kong get routes",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://10.51.144.46:8001/routes/",
+									"protocol": "http",
+									"host": [
+										"10",
+										"51",
+										"144",
+										"46"
+									],
+									"port": "8001",
+									"path": [
+										"routes",
+										""
+									]
+								},
+								"description": "Obtiene todos los rutas registrados en kong"
+							},
+							"response": []
+						},
+						{
+							"name": "Kong get routes associated to a service",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://10.51.144.46:8001/services/consulta-cliente/routes",
+									"protocol": "http",
+									"host": [
+										"10",
+										"51",
+										"144",
+										"46"
+									],
+									"port": "8001",
+									"path": [
+										"services",
+										"consulta-cliente",
+										"routes"
+									]
+								},
+								"description": "Obtiene todos los rutas asociadas a un servicio"
+							},
+							"response": []
+						},
+						{
+							"name": "Kong update route",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "strip_path",
+											"value": "false",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://10.51.144.46:8001/routes/e1b64e48-aa2f-4f51-b386-83074b0200c0",
+									"protocol": "http",
+									"host": [
+										"10",
+										"51",
+										"144",
+										"46"
+									],
+									"port": "8001",
+									"path": [
+										"routes",
+										"e1b64e48-aa2f-4f51-b386-83074b0200c0"
+									]
+								},
+								"description": "Actualiza un atributo de una ruta"
+							},
+							"response": []
+						},
+						{
+							"name": "Kong delete route",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://10.51.144.46:8001/routes/e1b64e48-aa2f-4f51-b386-83074b0200c0",
+									"protocol": "http",
+									"host": [
+										"10",
+										"51",
+										"144",
+										"46"
+									],
+									"port": "8001",
+									"path": [
+										"routes",
+										"e1b64e48-aa2f-4f51-b386-83074b0200c0"
+									]
+								},
+								"description": "Elimina una ruta"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Kong node information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001"
+						},
+						"description": "Solicitar detalles del node"
+					},
+					"response": []
+				},
+				{
+					"name": "Kong status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8001/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8001",
+							"path": [
+								"status"
+							]
+						},
+						"description": "Retrieve usage information about a node"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

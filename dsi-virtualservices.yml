@@ -1,0 +1,40 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: dsi-vs
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - istio-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /api/v1/auths
+    route:
+    - destination:
+        host: login-dsi-svc
+  - match:
+    - uri:
+        prefix: /api/v1/loans
+    route:
+    - destination:
+        host: loan-dsi-svc
+  - match:
+    - uri:
+        prefix: /api/v1/customers
+    route:
+    - destination:
+        host: customer-dsi-svc
+  - match:
+    - uri:
+        prefix: /dsi
+    route:
+    - destination:
+        host: frontend-dsi-svc
+  - match:
+    - uri:
+        prefix: /api/v1/clienteunico/clientes
+    route:
+    - destination:
+        host: servicio-cliente

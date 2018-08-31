@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: login-dsi-dep
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: login-dsi-app
+        tier: backend
+    spec:
+      containers:
+      - name: login-dsi
+        image: iortizf/login-dsi-ms:0.0.1-snapshot
+        ports:
+        - containerPort: 8081
+          name: http
+        imagePullPolicy: Always
+        resources:
+          #solicitud de memoria
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+          #limite de memoria
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"     
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: login-dsi-hpa
+spec:
+  maxReplicas: 5
+  minReplicas: 1
+  targetCPUUtilizationPercentage: 60
+  scaleTargetRef:
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    name: login-dsi-dep

@@ -1,0 +1,3 @@
+helm install --name db --replace --namespace dsi-microservices --name-template customer-dsi \
+  --set postgresUser=admin,postgresPassword=admin,postgresDatabase=customer_dsi,persistence.existingClaim=customer-dsi-db-pvc,persistence.size=5Gi \
+stable/postgresql

@@ -1,0 +1,15 @@
+server.port: 8082
+spring:
+  application:
+    name: customer-dsi-ms
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update 
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://customer-dsi-db-svc/customer_dsi
+    username: admin
+    password: admin
+    driverClassName: org.postgresql.Driver

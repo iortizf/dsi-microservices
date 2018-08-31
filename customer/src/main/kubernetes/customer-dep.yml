@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: customer-dsi-dep
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: customer-dsi-app
+        tier: backend
+    spec:
+      containers:
+      - name: customer-dsi
+        image: iortizf/customer-dsi-ms:0.0.1-snapshot
+        ports:
+        - containerPort: 8082
+          name: http
+        imagePullPolicy: Always
+        resources:
+          #solicitud de memoria
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+          #limite de memoria
+            limits:
+              memory: "1024Mi"
+              cpu: "500m" 
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: customer-dsi-hpa
+spec:
+  maxReplicas: 5
+  minReplicas: 1
+  targetCPUUtilizationPercentage: 60
+  scaleTargetRef:
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    name: customer-dsi-dep
