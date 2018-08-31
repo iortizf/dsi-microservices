@@ -54,7 +54,7 @@ sh "docker push ${imageName}"
 
 stage('Deploy Kubernetes'){
 
-sh("kubectl apply -f kubernetes/")
+sh("kubectl apply -f deploy-prod/")
 
 }
  /*
